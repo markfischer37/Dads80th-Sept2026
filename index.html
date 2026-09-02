@@ -83,17 +83,17 @@ h1 b{color:var(--red)}
 .tiny-arrow.left{left:25%}
 .tiny-arrow.right{right:25%}
 .return-route{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:7px;color:#96979b;font-size:11px;font-weight:700}
-.return-line{position:relative;width:min(245px,28vw);height:18px;display:flex;align-items:center}
+.return-line{position:relative;width:min(420px,42vw);height:34px;display:flex;align-items:center}
 .return-line:before{content:"";width:100%;height:1px;background:#e4d9dc}
-.return-stop{position:absolute;left:50%;top:-7px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;white-space:nowrap}
-.return-stop .stop-label{font-size:10px;color:#8c8e92;margin-bottom:3px}
-.return-stop .stop-dot{width:5px;height:5px;background:#8c8e92}
-.return-arrow{position:absolute;top:5px;font-size:9px;color:#aaa}
+.return-stop{top:-8px}
+.return-stop .stop-label{font-size:11px;font-weight:750;color:#777;line-height:1;margin-bottom:4px}
+.return-stop .stop-dot{width:6px;height:6px;background:var(--red)}
+.return-arrow{position:absolute;top:13px;font-size:10px;color:#b96a79;font-weight:700;line-height:1}
 .return-arrow.r1{right:24%}
 .return-arrow.r2{left:24%}
 @media(max-width:620px){
   .route-track{width:min(220px,45vw)}
-  .return-line{width:min(180px,38vw)}
+  .return-line{width:min(220px,45vw)}
   .route-row{gap:7px}
   .stop-label{font-size:10px}
 }
@@ -200,6 +200,13 @@ footer{text-align:center;padding:45px 0 65px;color:#777}
   .hero{padding:74px 0 64px}
   .agenda-card{padding:22px}
 }
+
+.surprise-media{margin-top:28px;position:relative;z-index:2}
+.surprise-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.surprise-gallery img{width:100%;height:220px;object-fit:cover;border-radius:16px;display:block;border:1px solid rgba(255,255,255,.28)}
+.video-link{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 17px;border-radius:999px;background:white;color:var(--red);text-decoration:none;font-weight:900}
+@media(max-width:760px){.surprise-gallery{grid-template-columns:repeat(2,1fr)}.surprise-gallery img{height:190px}}
+
 </style>
 </head>
 <body>
@@ -222,7 +229,7 @@ footer{text-align:center;padding:45px 0 65px;color:#777}
     <div class="pill">🍁 Operation: Surprise Dad</div>
     <h1>Surprise flight to Canada<br><b>for Dad's 80th</b></h1>
     <div class="lead">
-      A Last minute trip for Mark and Lia that started as a secret: Flying in from Israel, getting picked up by Auntie Rachie who let us into their house while they were out, sneaking out the back of their house when they got home and surprising them at the front door... well kinda.
+      A last minute trip for Mark and Lia that started as a secret: Flying in from Israel, getting picked up by Auntie Rachie who let us into their house while they were out, sneaking out the back of their house when they got home and surprising them at the front door... well kinda.
     </div>
     <div class="actions">
       <a class="btn red" href="#story">See how we did it ↓</a>
@@ -243,18 +250,15 @@ footer{text-align:center;padding:45px 0 65px;color:#777}
         <span class="route-end">Canada 🇨🇦</span>
       </div>
       <div class="return-route">
-        <span>Israel</span>
         <span class="return-line">
           <span class="return-arrow r2">‹</span>
           <span class="return-arrow r1">‹</span>
-          <span class="return-stop">
+          <span class="stop return-stop">
             <span class="stop-label">Zurich 🇨🇭</span>
             <span class="stop-dot"></span>
           </span>
         </span>
-        <span>Canada</span>
       </div>
-    </div>
   </div>
 </header>
 
@@ -283,6 +287,15 @@ footer{text-align:center;padding:45px 0 65px;color:#777}
       <p>After all the planning, flying and sneaking around, there was only one thing left to do.</p>
       <button class="reveal" type="button" id="revealBtn">Open the surprise 🎉</button>
       <div id="msg" class="msg">SURPRISE! 🎂🎉<br><span style="font-size:.52em">Happy 80th Birthday, Dad!</span></div>
+      <div class="surprise-media">
+        <div class="surprise-gallery">
+          <img src="dads80th_assets/surprise-1.jpg" alt="Mark and Lia waiting outside for the surprise">
+          <img src="dads80th_assets/surprise-2.jpg" alt="Lia surprising Dad">
+          <img src="dads80th_assets/surprise-3.jpg" alt="Mark, Lia and Dad after the surprise">
+          <img src="dads80th_assets/surprise-4.jpg" alt="Mark, Lia, Dad and Mom together after the surprise">
+        </div>
+        <a class="video-link" target="_blank" rel="noopener" href="https://photos.app.goo.gl/vWHbRWqHdzwyGAmA8">▶ See the video</a>
+      </div>
     </div>
   </div>
 </section>
@@ -510,6 +523,21 @@ footer{text-align:center;padding:45px 0 65px;color:#777}
       anim.onfinish=function(){d.remove()};
     }
   });
+})();
+</script>
+
+
+<script>
+(function(){
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function startAtTop(){
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    window.scrollTo(0,0);
+  }
+  startAtTop();
+  window.addEventListener('pageshow', startAtTop);
 })();
 </script>
 
