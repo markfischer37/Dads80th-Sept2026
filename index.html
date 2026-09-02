@@ -71,8 +71,32 @@ h1 b{color:var(--red)}
   text-decoration:none;font-weight:900;border:1px solid #ddd;background:white;color:#333
 }
 .btn.red{background:var(--red);border-color:var(--red);color:white}
-.flightline{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:32px;color:#777;font-weight:800}
-.flightline .bar{width:min(210px,28vw);height:2px;background:linear-gradient(90deg,var(--red),#ecc7ce)}
+.flightline{margin-top:32px;color:#777;font-weight:800}
+.route-row{display:flex;align-items:center;justify-content:center;gap:12px}
+.route-end{white-space:nowrap}
+.route-track{position:relative;width:min(420px,42vw);height:34px;display:flex;align-items:center}
+.route-track .bar{width:100%;height:2px;background:linear-gradient(90deg,var(--red),#ecc7ce)}
+.stop{position:absolute;left:50%;top:-8px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;white-space:nowrap}
+.stop-label{font-size:11px;font-weight:750;color:#777;line-height:1;margin-bottom:4px}
+.stop-dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
+.tiny-arrow{position:absolute;top:13px;font-size:10px;color:#b96a79;font-weight:700;line-height:1}
+.tiny-arrow.left{left:25%}
+.tiny-arrow.right{right:25%}
+.return-route{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:7px;color:#96979b;font-size:11px;font-weight:700}
+.return-line{position:relative;width:min(245px,28vw);height:18px;display:flex;align-items:center}
+.return-line:before{content:"";width:100%;height:1px;background:#e4d9dc}
+.return-stop{position:absolute;left:50%;top:-7px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;white-space:nowrap}
+.return-stop .stop-label{font-size:10px;color:#8c8e92;margin-bottom:3px}
+.return-stop .stop-dot{width:5px;height:5px;background:#8c8e92}
+.return-arrow{position:absolute;top:5px;font-size:9px;color:#aaa}
+.return-arrow.r1{right:24%}
+.return-arrow.r2{left:24%}
+@media(max-width:620px){
+  .route-track{width:min(220px,45vw)}
+  .return-line{width:min(180px,38vw)}
+  .route-row{gap:7px}
+  .stop-label{font-size:10px}
+}
 section{padding:70px 0}
 .head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}
 .kick{font-size:13px;color:var(--red);font-weight:950;letter-spacing:.12em;text-transform:uppercase}
@@ -204,7 +228,33 @@ footer{text-align:center;padding:45px 0 65px;color:#777}
       <a class="btn red" href="#story">See how we did it ↓</a>
       <a class="btn" target="_blank" rel="noopener" href="https://photos.app.goo.gl/K6ke2De3b6vzqkJZ6">📸 Open our photo album</a>
     </div>
-    <div class="flightline"><span>🇮🇱 Israel</span><span class="bar"></span><span>Canada 🇨🇦</span></div>
+    <div class="flightline" aria-label="Flight route from Israel through Vienna to Canada, returning through Zurich">
+      <div class="route-row">
+        <span class="route-end">🇮🇱 Israel</span>
+        <span class="route-track">
+          <span class="bar"></span>
+          <span class="tiny-arrow left">›</span>
+          <span class="tiny-arrow right">›</span>
+          <span class="stop">
+            <span class="stop-label">Vienna 🇦🇹</span>
+            <span class="stop-dot"></span>
+          </span>
+        </span>
+        <span class="route-end">Canada 🇨🇦</span>
+      </div>
+      <div class="return-route">
+        <span>Israel</span>
+        <span class="return-line">
+          <span class="return-arrow r2">‹</span>
+          <span class="return-arrow r1">‹</span>
+          <span class="return-stop">
+            <span class="stop-label">Zurich 🇨🇭</span>
+            <span class="stop-dot"></span>
+          </span>
+        </span>
+        <span>Canada</span>
+      </div>
+    </div>
   </div>
 </header>
 
